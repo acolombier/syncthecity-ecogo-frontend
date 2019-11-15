@@ -23,14 +23,14 @@ const SearchResultsScreen: React.FC = () => {
         </IonButtons>
         <Title></Title>
       </IonToolbar>
-      <Header>
-        <SearchResultInfo
-          from="London"
-          to="Paris"
-          date="Friday, 3 December 2019"
-        ></SearchResultInfo>
-      </Header>
       <IonContent>
+        <Header>
+          <SearchResultInfo
+            from="London"
+            to="Paris"
+            date="Friday, 3 December 2019"
+          ></SearchResultInfo>
+        </Header>
         {list.map(i => (
           <div key={i} style={{ paddingBottom: '1rem' }}>
             <SearchResultCard header="Greener choice - 16% less CO2">
