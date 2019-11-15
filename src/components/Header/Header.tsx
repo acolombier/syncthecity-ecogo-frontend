@@ -14,9 +14,9 @@ const Header: React.FC<PropsWithChildren<Props>> = (
     <div className="container">
       <IonImg src="/assets/blue-wave.svg"></IonImg>
       {aboveText ? (
-        <h3 className="header-text above-text">{aboveText}</h3>
+        <div className="header-text above-text">{aboveText}</div>
       ) : null}
-      <h1 className="header-text main-text">{children}</h1>
+      <div className="header-text main-text">{children}</div>
     </div>
   );
 };

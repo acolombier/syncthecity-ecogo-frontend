@@ -1,18 +1,21 @@
 .container {
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .header-text {
   color: white;
   position: absolute;
-  left: 20px;
-  transform: translateY(-50%);
+  left: 1.2rem;
 }
 
 .above-text {
-  top: 25%;
+  top: 1rem;
+  font-size: 1.2rem;
 }
 
 .main-text {
   top: 40%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
 }
