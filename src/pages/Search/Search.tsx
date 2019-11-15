@@ -7,18 +7,25 @@ import {
   IonInput,
   IonDatetime,
   IonButton,
-  IonFooter
+  IonFooter,
+  IonToolbar,
+  IonButtons
 } from '@ionic/react';
 import { pin, locate, calendar } from 'ionicons/icons';
 import React from 'react';
 import './Search.scss';
 import Header from '../../components/Header/Header';
+import Title from '../../components/Header/Title';
 
 const SearchScreen: React.FC = () => {
   const now = new Date();
   return (
     <IonPage>
-      <Header aboveText="UGoEco">What's your destination?</Header>
+      <IonToolbar>
+        <IonButtons slot="start"></IonButtons>
+        <Title></Title>
+      </IonToolbar>
+      <Header>What's your destination?</Header>
       <IonContent slot="fixed">
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">

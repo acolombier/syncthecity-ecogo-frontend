@@ -1,23 +1,20 @@
 import React, { PropsWithChildren } from 'react';
-import { IonImg } from '@ionic/react';
+import { IonImg, IonButtons, IonBackButton, IonToolbar } from '@ionic/react';
 import './Header.scss';
 
-interface Props {
-  aboveText?: string;
-}
+interface Props {}
 
 const Header: React.FC<PropsWithChildren<Props>> = (
   props: PropsWithChildren<Props>
 ) => {
-  const { children, aboveText } = props;
+  const { children } = props;
   return (
-    <div className="container">
-      <IonImg src="/assets/blue-wave.svg"></IonImg>
-      {aboveText ? (
-        <div className="header-text above-text">{aboveText}</div>
-      ) : null}
-      <div className="header-text main-text">{children}</div>
-    </div>
+    <>
+      <div className="container">
+        <IonImg src="/assets/blue-wave.svg" alt="Blue wave"></IonImg>
+        <div className="header-text main-text">{children}</div>
+      </div>
+    </>
   );
 };
 
