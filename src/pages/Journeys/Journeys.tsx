@@ -1,21 +1,24 @@
 import React from 'react';
-import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar, IonCard, IonIcon, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
+import { IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
 
 const journeys = [
   {
     id: 1,
     from: 'London',
     to: 'Paris',
+    date: '2019-10-11'
   },
   {
     id: 2,
     from: 'Norwich',
     to: 'Amsterdam',
+    date: '2019-10-11'
   },
   {
     id: 3,
     from: 'London',
     to: 'Madrid',
+    date: '2019-10-11'
   },
 ]
 
@@ -34,14 +37,10 @@ const JourneyScreen: React.FC = () => {
               (
                 <IonCard routerLink={`journeys/${journey.id}/detail`}>
                   <IonCardHeader>
-                    <IonCardSubtitle>Date</IonCardSubtitle>
+                  <IonCardSubtitle>{new Date(journey.date).toLocaleDateString()}</IonCardSubtitle>
                     <IonCardTitle>{`${journey.from} to ${journey.to}`}</IonCardTitle>
                   </IonCardHeader>
-
-                  <IonCardContent>
-                    Keep close to Nature's heart... and break clear away, once in awhile,
-                    and climb a mountain or spend a week in the woods. Wash your spirit clean.
-                  </IonCardContent>
+                  <img src={`https://source.unsplash.com/400x225/?${journey.to}`} />
                 </IonCard>
               )
             )

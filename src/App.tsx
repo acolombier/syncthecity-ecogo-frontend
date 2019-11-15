@@ -10,10 +10,11 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { paper, search, contact } from 'ionicons/icons';
+import { paper, search, medal, contact } from 'ionicons/icons';
 import Search from './pages/Search/Search';
 import Journeys from './pages/Journeys/Journeys';
 import Account from './pages/Account/Account';
+import Achievements from './pages/Achievements/Achievements';
 import Details from './pages/Journeys/Details';
 
 /* Core CSS required for Ionic components to work properly */
@@ -43,6 +44,7 @@ const App: React.FC = () => (
           <Route path="/search" component={Search} exact={true} />
           <Route path="/journeys" component={Journeys} exact={true} />
           <Route path="/journeys/:id/detail" component={Details} />
+          <Route path="/achievements" component={Achievements} />
           <Route path="/account" component={Account} />
           <Route path="/" render={() => <Redirect to="/search" />} exact={true} />
         </IonRouterOutlet>
@@ -54,6 +56,10 @@ const App: React.FC = () => (
           <IonTabButton tab="journeys" href="/journeys">
             <IonIcon icon={paper} />
             <IonLabel>My Journeys</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="achievements" href="/achievements">
+            <IonIcon icon={medal} />
+            <IonLabel>Achievements</IonLabel>
           </IonTabButton>
           <IonTabButton tab="account" href="/account">
             <IonIcon icon={contact} />
