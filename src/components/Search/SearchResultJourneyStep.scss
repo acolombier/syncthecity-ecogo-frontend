@@ -5,6 +5,7 @@
 
   div:not(.dot) {
     padding: 0.2rem;
+    line-height: 1rem;
   }
 
   div:not(.dot):not(.type) {
@@ -13,14 +14,11 @@
     &.time {
       font-weight: bold;
       font-size: 1.2rem;
+      margin-top: 0.8rem;
 
       &.to-time {
         color: grey;
       }
-    }
-
-    &.from-time {
-      margin-top: 0.8rem;
     }
   }
 }

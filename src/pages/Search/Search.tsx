@@ -9,7 +9,8 @@ import {
   IonButton,
   IonFooter,
   IonToolbar,
-  IonButtons
+  IonButtons,
+  IonImg
 } from '@ionic/react';
 import { pin, locate, calendar } from 'ionicons/icons';
 import React from 'react';
@@ -49,6 +50,11 @@ const SearchScreen: React.FC = () => {
             ></IonDatetime>
           </IonCardContent>
         </IonCard>
+        <IonImg
+          alt="USP"
+          src="/assets/usp.svg"
+          className="ion-padding"
+        ></IonImg>
       </IonContent>
 
       <IonFooter>
