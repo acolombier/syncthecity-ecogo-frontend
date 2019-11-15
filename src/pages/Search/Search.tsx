@@ -7,73 +7,61 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
   IonPage,
-  IonTitle,
+  IonInput,
+  IonDatetime,
+  IonButton,
+  IonFooter,
   IonToolbar
 } from '@ionic/react';
-import { book, build, colorFill, grid } from 'ionicons/icons';
+import { pin, locate, calendar } from 'ionicons/icons';
 import React from 'react';
 import './Search.scss';
 
 const SearchScreen: React.FC = () => {
+  const now = new Date();
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Search</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
         <IonCard className="welcome-card">
-          <img src="/assets/shapes.svg" alt="" />
           <IonCardHeader>
-            <IonCardSubtitle>Get Started</IonCardSubtitle>
-            <IonCardTitle>Welcome to Ionic</IonCardTitle>
+            <IonCardSubtitle>UGoEco</IonCardSubtitle>
+            <IonCardTitle>What's your destination?</IonCardTitle>
           </IonCardHeader>
-          <IonCardContent>
-            <p>
-              Now that your app has been created, you'll want to start building
-              out features and components. Check out some of the resources below
-              for next steps.
-            </p>
+        </IonCard>
+      </IonHeader>
+      <IonContent slot="fixed">
+        <IonCard>
+          <IonCardContent className="ion-align-items-center flex">
+            <IonIcon icon={locate}></IonIcon>
+            <IonInput placeholder="Type your departure location..."></IonInput>
           </IonCardContent>
         </IonCard>
-
-        <IonList lines="none">
-          <IonListHeader>
-            <IonLabel>Resources</IonLabel>
-          </IonListHeader>
-          <IonItem href="https://ionicframework.com/docs/" target="_blank">
-            <IonIcon slot="start" color="medium" icon={book} />
-            <IonLabel>Ionic Documentation</IonLabel>
-          </IonItem>
-          <IonItem
-            href="https://ionicframework.com/docs/building/scaffolding"
-            target="_blank"
-          >
-            <IonIcon slot="start" color="medium" icon={build} />
-            <IonLabel>Scaffold Out Your App</IonLabel>
-          </IonItem>
-          <IonItem
-            href="https://ionicframework.com/docs/layout/structure"
-            target="_blank"
-          >
-            <IonIcon slot="start" color="medium" icon={grid} />
-            <IonLabel>Change Your App Layout</IonLabel>
-          </IonItem>
-          <IonItem
-            href="https://ionicframework.com/docs/theming/basics"
-            target="_blank"
-          >
-            <IonIcon slot="start" color="medium" icon={colorFill} />
-            <IonLabel>Theme Your App</IonLabel>
-          </IonItem>
-        </IonList>
+        <IonCard>
+          <IonCardContent className="ion-align-items-center flex">
+            <IonIcon icon={pin}></IonIcon>
+            <IonInput placeholder="Type your destination..."></IonInput>
+          </IonCardContent>
+        </IonCard>
+        <IonCard>
+          <IonCardContent className="ion-align-items-center flex">
+            <IonIcon icon={calendar}></IonIcon>
+            <IonDatetime
+              placeholder="Find the date you want to leave..."
+              min={now.toISOString()}
+              max="2030-01-01"
+            ></IonDatetime>
+          </IonCardContent>
+        </IonCard>
       </IonContent>
+
+      <IonFooter>
+        <div className="ion-padding">
+          <IonButton expand="block" size="large">
+            Search
+          </IonButton>
+        </div>
+      </IonFooter>
     </IonPage>
   );
 };

@@ -35,6 +35,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.scss';
+import './theme/index.scss';
 
 const App: React.FC = () => (
   <IonApp>
@@ -46,7 +47,11 @@ const App: React.FC = () => (
           <Route path="/journeys/:id/detail" component={Details} />
           <Route path="/achievements" component={Achievements} />
           <Route path="/account" component={Account} />
-          <Route path="/" render={() => <Redirect to="/search" />} exact={true} />
+          <Route
+            path="/"
+            render={() => <Redirect to="/search" />}
+            exact={true}
+          />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="search" href="/search">

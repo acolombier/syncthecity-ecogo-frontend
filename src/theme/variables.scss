@@ -4,20 +4,20 @@ http://ionicframework.com/docs/theming/ */
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #01c3a8;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: darken(--ion-color-primary, 3%);
+  --ion-color-primary-tint: lighten(--ion-color-primary, 3%);
 
   /** secondary **/
-  --ion-color-secondary: #0cd1e8;
+  --ion-color-secondary: #5773c6;
   --ion-color-secondary-rgb: 12, 209, 232;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0bb8cc;
-  --ion-color-secondary-tint: #24d6ea;
+  --ion-color-secondary-shade: darken(--ion-color-primary, 3%);
+  --ion-color-secondary-tint: lighten(--ion-color-primary, 3%);
 
   /** tertiary **/
   --ion-color-tertiary: #7044ff;
@@ -74,4 +74,16 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+}
+
+ion-content {
+  --background: #f6fafd;
+}
+
+ion-footer {
+  --background: #f6fafd;
+}
+
+ion-card {
+  --background: white !important;
 }
