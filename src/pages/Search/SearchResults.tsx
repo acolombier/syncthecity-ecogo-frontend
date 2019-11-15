@@ -10,6 +10,7 @@ import SearchResultCard from '../../components/Search/SearchResultCard';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
 import SearchResultInfo from '../../components/Search/SearchResultInfo';
+import SearchResultJourney from '../../components/Search/SearchResultJourney';
 
 const list = [1, 2, 3];
 
@@ -30,11 +31,12 @@ const SearchResultsScreen: React.FC = () => {
         ></SearchResultInfo>
       </Header>
       <IonContent>
-        // Tab selector
         {list.map(i => (
-          <SearchResultCard key={i} header={<div>test</div>}>
-            Hi
-          </SearchResultCard>
+          <div key={i} style={{ paddingBottom: '1rem' }}>
+            <SearchResultCard header="Greener choice - 16% less CO2">
+              <SearchResultJourney></SearchResultJourney>
+            </SearchResultCard>
+          </div>
         ))}
       </IonContent>
     </IonPage>
