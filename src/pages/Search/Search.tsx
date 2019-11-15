@@ -17,14 +17,14 @@ import {
 } from '@ionic/react';
 import { book, build, colorFill, grid } from 'ionicons/icons';
 import React from 'react';
-import './Tab1.scss';
+import './Search.scss';
 
-const Tab1: React.FC = () => {
+const SearchScreen: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab One</IonTitle>
+          <IonTitle>Search</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -78,4 +78,4 @@ const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default SearchScreen;

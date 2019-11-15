@@ -10,11 +10,11 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { apps, flash, send } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-import Details from './pages/Details';
+import { paper, search, contact } from 'ionicons/icons';
+import Search from './pages/Search/Search';
+import Journeys from './pages/Journeys/Journeys';
+import Account from './pages/Account/Account';
+import Details from './pages/Journeys/Details';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,24 +40,24 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab2/details" component={Details} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/search" component={Search} exact={true} />
+          <Route path="/journeys" component={Journeys} exact={true} />
+          <Route path="/journeys/:id/detail" component={Details} />
+          <Route path="/account" component={Account} />
+          <Route path="/" render={() => <Redirect to="/search" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={flash} />
-            <IonLabel>Tab One</IonLabel>
+          <IonTabButton tab="search" href="/search">
+            <IonIcon icon={search} />
+            <IonLabel>Search</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={apps} />
-            <IonLabel>Tab Two</IonLabel>
+          <IonTabButton tab="journeys" href="/journeys">
+            <IonIcon icon={paper} />
+            <IonLabel>My Journeys</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={send} />
-            <IonLabel>Tab Three</IonLabel>
+          <IonTabButton tab="account" href="/account">
+            <IonIcon icon={contact} />
+            <IonLabel>Account</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
