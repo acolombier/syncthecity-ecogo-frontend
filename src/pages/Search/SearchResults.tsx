@@ -9,6 +9,7 @@ import {
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
+import SearchResultInfo from '../../components/Search/SearchResultInfo';
 
 const list = [1, 2, 3];
 
@@ -21,9 +22,15 @@ const SearchResultsScreen: React.FC = () => {
         </IonButtons>
         <Title></Title>
       </IonToolbar>
-      <Header>Results</Header>
+      <Header>
+        <SearchResultInfo
+          from="London"
+          to="Paris"
+          date="Friday, 3 December 2019"
+        ></SearchResultInfo>
+      </Header>
       <IonContent>
-        // Journey Name + Date // Tab selector
+        // Tab selector
         {list.map(i => (
           <SearchResultCard key={i} header={<div>test</div>}>
             Hi

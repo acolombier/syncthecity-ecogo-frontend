@@ -12,7 +12,7 @@ const Header: React.FC<PropsWithChildren<Props>> = (
     <>
       <div className="container">
         <IonImg src="/assets/blue-wave.svg" alt="Blue wave"></IonImg>
-        <div className="header-text main-text">{children}</div>
+        <div className="content">{children}</div>
       </div>
     </>
   );

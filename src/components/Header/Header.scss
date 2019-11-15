@@ -4,14 +4,14 @@
   margin-bottom: 1rem;
 }
 
-.header-text {
-  color: white;
+.content {
   position: absolute;
-  left: 1.2rem;
-}
-
-.main-text {
   top: 40%;
   transform: translateY(-50%);
   font-size: 1.8rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  color: white;
+  font-family: Arial;
+  font-weight: bold;
 }
