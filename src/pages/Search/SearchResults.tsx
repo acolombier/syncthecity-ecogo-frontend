@@ -32,11 +32,7 @@ const SearchResultsScreen: React.FC = () => {
           ></SearchResultInfo>
         </Header>
         {list.map(i => (
-          <div
-            key={i}
-            style={{ paddingBottom: '1rem' }}
-            className="ion-padding"
-          >
+          <div key={i} style={{ paddingBottom: '.5rem' }}>
             <SearchResultCard header="Greener choice - 16% less CO2">
               <SearchResultJourney></SearchResultJourney>
             </SearchResultCard>
