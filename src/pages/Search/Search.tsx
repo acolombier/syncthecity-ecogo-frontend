@@ -1,35 +1,24 @@
 import {
   IonCard,
   IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonContent,
-  IonHeader,
   IonIcon,
   IonPage,
   IonInput,
   IonDatetime,
   IonButton,
-  IonFooter,
-  IonToolbar
+  IonFooter
 } from '@ionic/react';
 import { pin, locate, calendar } from 'ionicons/icons';
 import React from 'react';
 import './Search.scss';
+import Header from '../../components/Header/Header';
 
 const SearchScreen: React.FC = () => {
   const now = new Date();
   return (
     <IonPage>
-      <IonHeader>
-        <IonCard className="welcome-card">
-          <IonCardHeader>
-            <IonCardSubtitle>UGoEco</IonCardSubtitle>
-            <IonCardTitle>What's your destination?</IonCardTitle>
-          </IonCardHeader>
-        </IonCard>
-      </IonHeader>
+      <Header aboveText="UGoEco">What's your destination?</Header>
       <IonContent slot="fixed">
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
@@ -57,7 +46,7 @@ const SearchScreen: React.FC = () => {
 
       <IonFooter>
         <div className="ion-padding">
-          <IonButton expand="block" size="large">
+          <IonButton expand="block" size="large" routerLink="/search/results">
             Search
           </IonButton>
         </div>

@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+}
+
+.header-text {
+  color: white;
+  position: absolute;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.above-text {
+  top: 25%;
+}
+
+.main-text {
+  top: 40%;
+}
