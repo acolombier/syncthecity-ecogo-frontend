@@ -1,26 +1,6 @@
 import React from 'react';
-import { IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
-
-const journeys = [
-  {
-    id: 1,
-    from: 'London',
-    to: 'Paris',
-    date: '2019-10-11'
-  },
-  {
-    id: 2,
-    from: 'Norwich',
-    to: 'Amsterdam',
-    date: '2019-10-11'
-  },
-  {
-    id: 3,
-    from: 'London',
-    to: 'Madrid',
-    date: '2019-10-11'
-  },
-]
+import { IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
+import { journeys } from '../../data/journeys';
 
 const JourneyScreen: React.FC = () => {
   return (
