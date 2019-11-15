@@ -1,0 +1,34 @@
+.column {
+  flex: 1;
+  width: 100%;
+  text-align: center;
+
+  div:not(.dot) {
+    padding: 0.2rem;
+    line-height: 1rem;
+  }
+
+  div:not(.dot):not(.type) {
+    color: var(--ion-color-tertiary);
+
+    &.time {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 0.8rem;
+
+      &.to-time {
+        color: grey;
+      }
+    }
+  }
+}
+
+.type {
+  background-color: var(--ion-color-primary);
+  color: white;
+}
+
+.dot {
+  font-weight: bold;
+  line-height: 0.8rem;
+}

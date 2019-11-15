@@ -1,0 +1,17 @@
+.container {
+  position: relative;
+  top: -5px;
+  margin-bottom: 1rem;
+}
+
+.content {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  left: 1.2rem;
+  right: 1.2rem;
+  color: white;
+  font-family: Arial;
+  font-weight: bold;
+}
