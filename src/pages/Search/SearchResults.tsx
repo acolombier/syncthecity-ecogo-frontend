@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonPage,
   IonContent,
@@ -11,10 +11,27 @@ import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
 import SearchResultInfo from '../../components/Search/SearchResultInfo';
 import SearchResultJourney from '../../components/Search/SearchResultJourney';
+import { fetchSearchResults } from '../../services/searchResults';
+import { RouteComponentProps } from 'react-router';
 
 const list = [1, 2, 3];
 
-const SearchResultsScreen: React.FC = () => {
+interface Props extends RouteComponentProps {}
+
+const SearchResultsScreen: React.FC<Props> = (props) => {
+  const [results, setResults] = useState(null);
+
+  const getSearchResults = async () => {
+    const response = await fetchSearchResults(props.location.state.to, props.location.state.from);
+    console.log(response);
+    setResults(response);
+  }
+
+  useEffect(() => {
+    console.log(props);
+    getSearchResults(); 
+  }, []);
+
   return (
     <IonPage>
       <IonToolbar>

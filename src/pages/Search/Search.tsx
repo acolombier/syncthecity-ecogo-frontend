@@ -13,12 +13,20 @@ import {
   IonImg
 } from '@ionic/react';
 import { pin, locate, calendar } from 'ionicons/icons';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Search.scss';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
+import { RouteComponentProps } from 'react-router';
 
-const SearchScreen: React.FC = () => {
+interface Props extends RouteComponentProps<{
+  id: string;
+}> {}
+
+const SearchScreen: React.FC<Props> = (props) => {
+  const [from, setFrom] = useState();
+  const [to, setTo] = useState();
+
   const now = new Date();
   return (
     <IonPage>
@@ -31,13 +39,13 @@ const SearchScreen: React.FC = () => {
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
             <IonIcon icon={locate}></IonIcon>
-            <IonInput placeholder="Type your departure location..."></IonInput>
+            <IonInput placeholder="Type your departure location..." value={from} onIonChange={(value) => setFrom(value.detail.value)}></IonInput>
           </IonCardContent>
         </IonCard>
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
             <IonIcon icon={pin}></IonIcon>
-            <IonInput placeholder="Type your destination..."></IonInput>
+            <IonInput placeholder="Type your destination..." value={to} onIonChange={(value) => setTo(value.detail.value)}></IonInput>
           </IonCardContent>
         </IonCard>
         <IonCard>
@@ -59,7 +67,7 @@ const SearchScreen: React.FC = () => {
 
       <IonFooter>
         <div className="ion-padding">
-          <IonButton expand="block" size="large" routerLink="/search/results">
+          <IonButton expand="block" size="large" onClick={() => props.history.push('/search/results', {to, from})}>
             Search
           </IonButton>
         </div>
