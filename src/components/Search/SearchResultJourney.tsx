@@ -12,7 +12,7 @@ interface Props {
 const SearchResultJourney: React.FC<Props> = props => {
   return (
     <div>
-      <div className="flex">
+      <div className="flex" style={{ overflowX: 'scroll' }}>
         {props.journeyResult.steps.map((step, index) => (
           <SearchResultJourneyStep
             step={step}
@@ -34,7 +34,7 @@ const SearchResultJourney: React.FC<Props> = props => {
           <div className="flex ion-justify-content-between ion-align-items-baseline">
             <div>Total price</div>
             <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-              &nbsp;{`£${props.journeyResult.cost / 100}`}
+              &nbsp;{`£${(props.journeyResult.cost / 100).toFixed(2)}`}
             </span>
           </div>
         </div>
