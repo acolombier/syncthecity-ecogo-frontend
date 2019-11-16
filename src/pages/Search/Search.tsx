@@ -84,7 +84,9 @@ const SearchScreen: React.FC<Props> = props => {
         <IonButtons slot="start"></IonButtons>
         <Title></Title>
       </IonToolbar>
-      <Header>What's your destination?</Header>
+      <Header>
+        Hi Matt, <br /> What's your destination?
+      </Header>
       <IonContent slot="fixed">
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
