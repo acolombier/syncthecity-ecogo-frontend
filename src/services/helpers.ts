@@ -1,16 +1,7 @@
-export function debounce(func: Function, wait: number, immediate: boolean) {
-  var timeout: any;
-  return function() {
-    //@ts-ignore
-    var context = this,
-      args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
+export const getDuration = (value: number) => {
+  var hours = value / 60;
+  var rhours = Math.floor(hours);
+  var minutes = (hours - rhours) * 60;
+  var rminutes = Math.round(minutes);
+  return rhours + 'h ' + rminutes + 'm';
+};
