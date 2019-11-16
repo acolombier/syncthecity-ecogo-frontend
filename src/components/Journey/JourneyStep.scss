@@ -1,0 +1,40 @@
+.column {
+  flex: 1;
+  width: 100%;
+  text-align: center;
+
+  div {
+    padding: 0.2rem;
+    line-height: 1rem;
+  }
+
+  div:not(.dot):not(.type) {
+    color: var(--ion-color-tertiary);
+
+    &.time {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 0.8rem;
+
+      &.to-time {
+        color: grey;
+      }
+    }
+  }
+}
+
+.middle-detail {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  .people,
+  .price {
+    color: black;
+  }
+}
+
+.qr {
+  display: flex;
+  padding-top: 1rem;
+  justify-content: center;
+}

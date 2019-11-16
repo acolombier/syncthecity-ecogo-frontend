@@ -17,6 +17,7 @@ import Journeys from './pages/Journeys/Journeys';
 import Account from './pages/Account/Account';
 import Achievements from './pages/Achievements/Achievements';
 import Details from './pages/Journeys/Details';
+import JourneyScreen from './pages/Journeys/Journey';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,6 +50,7 @@ const App: React.FC = () => (
             component={SearchResultsScreen}
             exact={true}
           />
+          <Route path="/search/journeys/:id" component={JourneyScreen} />
           <Route path="/:tab(journeys)" component={Journeys} exact={true} />
           <Route path="/journeys/:id/detail" component={Details} />
           <Route path="/:tab(achievements)" component={Achievements} />
