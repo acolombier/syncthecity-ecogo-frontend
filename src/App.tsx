@@ -44,17 +44,17 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/search" component={Search} exact={true} />
+          <Route path="/:tab(search)" component={Search} exact={true} />
           <Route
             path="/search/results"
             component={SearchResultsScreen}
             exact={true}
           />
-          <Route path="/journeys" component={Journeys} exact={true} />
           <Route path="/search/journeys/:id" component={JourneyScreen} />
+          <Route path="/:tab(journeys)" component={Journeys} exact={true} />
           <Route path="/journeys/:id/detail" component={Details} />
-          <Route path="/achievements" component={Achievements} />
-          <Route path="/account" component={Account} />
+          <Route path="/:tab(achievements)" component={Achievements} />
+          <Route path="/:tab(account)" component={Account} />
           <Route
             path="/"
             render={() => <Redirect to="/search" />}

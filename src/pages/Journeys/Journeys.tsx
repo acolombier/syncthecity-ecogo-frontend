@@ -23,8 +23,8 @@ const JourneysScreen: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonList>
-          {journeys.map(journey => (
-            <IonCard routerLink={`journeys/${journey.id}/detail`}>
+          {journeys.map((journey, index) => (
+            <IonCard routerLink={`journeys/${journey.id}/detail`} key={index}>
               <IonCardHeader>
                 <IonCardSubtitle>
                   {new Date(journey.departTime).toLocaleDateString()}
