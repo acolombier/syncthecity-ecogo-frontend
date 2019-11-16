@@ -24,12 +24,10 @@ const SearchResultsScreen: React.FC<Props> = (props) => {
 
   const getSearchResults = async () => {
     const response = await fetchSearchResults(props.location.state.to, props.location.state.from);
-    console.log(response);
     setResults(response);
   }
 
   useEffect(() => {
-    console.log(props);
     getSearchResults(); 
   }, []);
 

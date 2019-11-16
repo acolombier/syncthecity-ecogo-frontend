@@ -15,13 +15,9 @@ interface Props {
 }
 
 export const Map: React.FC<Props> = (props) => {
-  const [viewport, setViewport] = useState({
-    latitude: 0.0,
-    longitude: 0.0,
-    zoom: 8,
-  });
+  const [viewport, setViewport] = useState();
 
-  useEffect(() => {
+  const setBoundingBox = () => {
     if (props.markers.length) {
       const { longitude, latitude, zoom } = new WebMercatorViewport(viewport)
         .fitBounds(
@@ -43,6 +39,14 @@ export const Map: React.FC<Props> = (props) => {
         zoom,
       });
     }
+  }
+
+  useEffect(() => {
+    setBoundingBox();
+  }, []);
+
+  useEffect(() => {
+    setBoundingBox();
   }, [props.markers]);
 
   return (
