@@ -18,8 +18,6 @@ import {
 } from '../../services/searchResults';
 import { RouteComponentProps } from 'react-router';
 
-const list = [1, 2, 3];
-
 interface Props extends RouteComponentProps {}
 
 const SearchResultsScreen: React.FC<Props> = props => {
@@ -58,11 +56,11 @@ const SearchResultsScreen: React.FC<Props> = props => {
             date="Friday, 3 December 2019"
           ></SearchResultInfo>
         </Header>
-        {list.map(i => (
-          <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
+        {results.map((result, index) => (
+          <IonRouterLink key={index} routerLink={`/search/journeys/${index}`}>
             <div style={{ paddingBottom: '.5rem' }}>
               <SearchResultCard header="Greener choice - 16% less CO2">
-                <SearchResultJourney></SearchResultJourney>
+                <SearchResultJourney journeyResult={result}></SearchResultJourney>
               </SearchResultCard>
             </div>
           </IonRouterLink>
