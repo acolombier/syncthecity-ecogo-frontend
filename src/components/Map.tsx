@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IonIcon } from '@ionic/react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { pin } from 'ionicons/icons';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { WebMercatorViewport } from 'viewport-mercator-project';
 
 export interface LatLon {
   latitude: number;
@@ -10,15 +11,39 @@ export interface LatLon {
 }
 
 interface Props {
-  markers?: LatLon[];
+  markers: LatLon[];
 }
 
 export const Map: React.FC<Props> = (props) => {
   const [viewport, setViewport] = useState({
-    latitude: 51.5287718,
-    longitude: -0.2416802,
-    zoom: 9
+    latitude: 0.0,
+    longitude: 0.0,
+    zoom: 8,
   });
+
+  useEffect(() => {
+    if (props.markers.length) {
+      const { longitude, latitude, zoom } = new WebMercatorViewport(viewport)
+        .fitBounds(
+          [
+            [
+              props.markers[0].longitude,
+              props.markers[0].latitude
+            ],
+            [
+              props.markers[1].longitude,
+              props.markers[1].latitude
+            ]
+          ], {}
+        );
+      setViewport({
+        ...viewport,
+        latitude,
+        longitude,
+        zoom,
+      });
+    }
+  }, [props.markers]);
 
   return (
     <ReactMapGL
@@ -31,7 +56,7 @@ export const Map: React.FC<Props> = (props) => {
       mapboxApiAccessToken={'pk.eyJ1IjoibmF0aGFudm9sbGVyIiwiYSI6ImNrMzA5cmRldDA1ajAzbnJjbWpid2xqNnUifQ.AtmKV4b9aJYA_M9tciJZDQ'}
     >
       {
-         props.markers ? props.markers.map(marker => (
+        props.markers ? props.markers.map(marker => (
           <Marker latitude={marker.latitude} longitude={marker.longitude}>
             <IonIcon icon={pin} />
           </Marker>

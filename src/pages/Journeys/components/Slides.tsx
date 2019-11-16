@@ -15,22 +15,26 @@ const slideOpts = {
 
 export const JourneyStepSlides: React.FC<Props> = (props) => {
   useEffect(() => {
-    updateMarkerHandler();
+    updateMarkerHandler(0);
   }, []);
 
-  const slideChange = (event: any) => {
-    console.log(event);
+  const slideChange = (event: CustomEvent<void>) => {
+    if (event && event.target) {
+      const eventTarget: any = event.target;
+      const index = eventTarget.swiper.activeIndex;
+      updateMarkerHandler(index);
+    }
   }
 
-  const updateMarkerHandler = () => {
-    const markers: LatLon[] = [
+  const updateMarkerHandler = (index: number) => {
+    const markers = [
       {
-        latitude: props.journeySteps[0].from.latitude,
-        longitude: props.journeySteps[0].from.longitude
+        latitude: props.journeySteps[index].from.latitude,
+        longitude: props.journeySteps[index].from.longitude,
       },
       {
-        latitude: props.journeySteps[0].to.latitude,
-        longitude: props.journeySteps[0].to.longitude
+        latitude: props.journeySteps[index].to.latitude,
+        longitude: props.journeySteps[index].to.longitude,
       }
     ];
 

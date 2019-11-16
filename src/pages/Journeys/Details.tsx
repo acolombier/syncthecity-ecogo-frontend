@@ -11,9 +11,9 @@ interface JourneyDetailPageProps extends RouteComponentProps<{
 
 const Details: React.FC<JourneyDetailPageProps> = ({ match }) => {
   const [journey, setJourney] = useState<Journey>();
-  const [markers, setMarkers] = useState<[LatLon]>();
+  const [markers, setMarkers] = useState<LatLon[]>([]);
 
-  const updateMarkers = (markers: any) => {
+  const updateMarkers = (markers: LatLon[]) => {
     setMarkers(markers);
   }
 
