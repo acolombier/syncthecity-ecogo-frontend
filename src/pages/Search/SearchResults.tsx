@@ -12,14 +12,10 @@ import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
 import SearchResultInfo from '../../components/Search/SearchResultInfo';
 import SearchResultJourney from '../../components/Search/SearchResultJourney';
-<<<<<<< HEAD
-import { fetchSearchResults, JourneyResult } from '../../services/searchResults';
-=======
 import {
   fetchSearchResults,
   JourneyResult
 } from '../../services/searchResults';
->>>>>>> 9163fe6e19a43d5726721a90b8de9aa1078d7b60
 import { RouteComponentProps } from 'react-router';
 
 const list = [1, 2, 3];
