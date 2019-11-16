@@ -4,7 +4,8 @@ import {
   IonContent,
   IonToolbar,
   IonButtons,
-  IonBackButton
+  IonBackButton,
+  IonRouterLink
 } from '@ionic/react';
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import Header from '../../components/Header/Header';
@@ -32,11 +33,13 @@ const SearchResultsScreen: React.FC = () => {
           ></SearchResultInfo>
         </Header>
         {list.map(i => (
-          <div key={i} style={{ paddingBottom: '.5rem' }}>
-            <SearchResultCard header="Greener choice - 16% less CO2">
-              <SearchResultJourney></SearchResultJourney>
-            </SearchResultCard>
-          </div>
+          <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
+            <div style={{ paddingBottom: '.5rem' }}>
+              <SearchResultCard header="Greener choice - 16% less CO2">
+                <SearchResultJourney></SearchResultJourney>
+              </SearchResultCard>
+            </div>
+          </IonRouterLink>
         ))}
       </IonContent>
     </IonPage>

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { IonImg, IonButtons, IonBackButton, IonToolbar } from '@ionic/react';
+import { IonImg } from '@ionic/react';
 import './Header.scss';
 
 interface Props {}
