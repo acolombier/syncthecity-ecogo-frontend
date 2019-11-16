@@ -19,18 +19,24 @@ const list = [1, 2, 3];
 
 interface Props extends RouteComponentProps {}
 
-const SearchResultsScreen: React.FC<Props> = (props) => {
+const SearchResultsScreen: React.FC<Props> = props => {
   const [results, setResults] = useState(null);
+  const [loadng, setLoading] = useState(false);
 
   const getSearchResults = async () => {
-    const response = await fetchSearchResults(props.location.state.to, props.location.state.from);
+    const response = await fetchSearchResults(
+      props.location.state.to,
+      props.location.state.from
+    );
     console.log(response);
     setResults(response);
-  }
+    setLoading(false);
+  };
 
   useEffect(() => {
     console.log(props);
-    getSearchResults(); 
+    setLoading(true);
+    getSearchResults();
   }, []);
 
   return (
