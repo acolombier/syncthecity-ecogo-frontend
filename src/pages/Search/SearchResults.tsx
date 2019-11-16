@@ -22,8 +22,10 @@ import {
 interface Props extends RouteComponentProps {}
 
 const SearchResultsScreen: React.FC<Props> = props => {
-  const toParts = props.location.state.to.split(',');
-  const fromParts = props.location.state.from.split(',');
+  const toParam = props.location.state.to;
+  const fromParam = props.location.state.from;
+  const toParts = (toParam || '').split(',');
+  const fromParts = (fromParam || '').split(',');
   const to = toParts[0];
   const from = fromParts[0];
 

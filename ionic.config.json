@@ -1,5 +1,7 @@
 {
   "name": "EcoGo",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
