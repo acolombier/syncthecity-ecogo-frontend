@@ -22,8 +22,10 @@ import {
 interface Props extends RouteComponentProps {}
 
 const SearchResultsScreen: React.FC<Props> = props => {
-  const to = props.location.state.to;
-  const from = props.location.state.from;
+  const toParts = props.location.state.to.split(',');
+  const fromParts = props.location.state.from.split(',');
+  const to = toParts[0];
+  const from = fromParts[0];
 
   const [results, setResults] = useState<JourneyResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,10 @@ const SearchResultsScreen: React.FC<Props> = props => {
 
   const renderLoading = () => {
     return (
-      <IonLoading isOpen={loading} message={'Finding you the best route...'} />
+      <IonLoading
+        isOpen={loading}
+        message={'🌳 Finding you the best route...'}
+      />
     );
   };
 

@@ -18,7 +18,7 @@ import {
   IonLabel
 } from '@ionic/react';
 import { pin, locate, calendar } from 'ionicons/icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Search.scss';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
@@ -52,7 +52,9 @@ const SearchScreen: React.FC<Props> = props => {
   };
 
   const search = async (term: string) => {
-    setSearchTerm(term);
+    if (!searchTerm) {
+      return;
+    }
     const results = await geocode(term);
     setGeocodeResults(results);
   };
@@ -71,6 +73,10 @@ const SearchScreen: React.FC<Props> = props => {
     }
     setSearchModalOpen(false);
   };
+
+  useEffect(() => {
+    search(searchTerm);
+  }, [searchTerm]);
 
   return (
     <IonPage>
@@ -123,11 +129,11 @@ const SearchScreen: React.FC<Props> = props => {
             showCancelButton="always"
             value={searchTerm}
             onIonCancel={() => setSearchModalOpen(false)}
-            onIonChange={value => search(value.detail.value!)}
+            onIonChange={value => setSearchTerm(value.detail.value!)}
           ></IonSearchbar>
           <IonList>
             {geocodeResults.map((result, i) => (
-              <IonItem onClick={() => selectLocation(result)}>
+              <IonItem key={i} onClick={() => selectLocation(result)}>
                 <IonLabel className="ion-text-wrap">
                   {result.display_name}
                 </IonLabel>
