@@ -19,8 +19,14 @@ import SearchResultCard from '../../components/Search/SearchResultCard';
 import JourneyStep from '../../components/Journey/JourneyStep';
 import { createFeedItem } from '../../services/monzo';
 import { RouteComponentProps } from 'react-router';
+import { JourneyResult } from '../../services/searchResults';
 
-const JourneyScreen: React.FC<RouteComponentProps> = ({ history }) => {
+interface Props extends RouteComponentProps {}
+
+const JourneyScreen: React.FC<Props> = props => {
+  const journey: JourneyResult = props.location.state;
+  if (!journey || !journey.steps) return null;
+
   return (
     <IonPage>
       <IonHeader>
@@ -41,12 +47,14 @@ const JourneyScreen: React.FC<RouteComponentProps> = ({ history }) => {
         </Header>
         <IonImg alt="Eco message" src="/assets/trees-saved.svg"></IonImg>
         <IonSlides pager>
-          {[1, 2, 3].map(s => {
+          {journey.steps.map((step, index) => {
             return (
-              <IonSlide key={s}>
+              <IonSlide key={index}>
                 <SearchResultCard
                   forceFullWidh
-                  header={<div className="ion-text-center">Train</div>}
+                  header={
+                    <div className="ion-text-center">{step.steps[0].type}</div>
+                  }
                 >
                   <JourneyStep></JourneyStep>
                 </SearchResultCard>
@@ -64,14 +72,14 @@ const JourneyScreen: React.FC<RouteComponentProps> = ({ history }) => {
             className="flex ion-justify-content-between"
             onClick={() => {
               createFeedItem();
-              history.push('/search/checkout');
+              props.history.push('/search/checkout');
             }}
           >
             <p className="ion-text-start" style={{ flex: 1 }}>
               Checkout
             </p>
             <b className="ion-text-end" style={{ flex: 1 }}>
-              £219.80
+              {`£${(journey.cost / 100).toFixed(2)}`}
             </b>
             <div className="flex ion-justify-content-between"></div>
           </IonButton>
