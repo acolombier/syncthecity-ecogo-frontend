@@ -71,7 +71,7 @@ const SearchResultsScreen: React.FC<Props> = props => {
           <IonImg alt="Eco message" src="/assets/search-tabs.svg"></IonImg>
         </div>
         {results.map((result, i) => (
-          <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
+          <IonRouterLink key={i} onClick={() => props.history.push(`/search/journeys/${i}`, result)}>
             <div style={{ paddingBottom: '.5rem' }}>
               <SearchResultCard header={`${result.co2.toFixed(1)}kg of carbon`}>
                 <SearchResultJourney

@@ -18,8 +18,15 @@ import SearchResultInfo from '../../components/Search/SearchResultInfo';
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import JourneyStep from '../../components/Journey/JourneyStep';
 import { createFeedItem } from '../../services/monzo';
+import { JourneyResult } from '../../services/searchResults';
+import { RouteComponentProps } from 'react-router';
 
-const JourneyScreen: React.FC = () => {
+interface Props extends RouteComponentProps {}
+
+const JourneyScreen: React.FC<Props> = props => {
+  const journey: JourneyResult = props.location.state;
+  if (!journey || !journey.steps) return null;
+
   return (
     <IonPage>
       <IonHeader>
@@ -40,12 +47,12 @@ const JourneyScreen: React.FC = () => {
         </Header>
         <IonImg alt="Eco message" src="/assets/trees-saved.svg"></IonImg>
         <IonSlides pager>
-          {[1, 2, 3].map(s => {
+          {journey.steps.map((step, index) => {
             return (
-              <IonSlide key={s}>
+              <IonSlide key={index}>
                 <SearchResultCard
                   forceFullWidh
-                  header={<div className="ion-text-center">Train</div>}
+                  header={<div className="ion-text-center">{step.steps[0].type}</div>}
                 >
                   <JourneyStep></JourneyStep>
                 </SearchResultCard>
@@ -67,7 +74,7 @@ const JourneyScreen: React.FC = () => {
               Checkout
             </p>
             <b className="ion-text-end" style={{ flex: 1 }}>
-              £219.80
+              {`£${(journey.cost / 100).toFixed(2)}`}
             </b>
             <div className="flex ion-justify-content-between"></div>
           </IonButton>
