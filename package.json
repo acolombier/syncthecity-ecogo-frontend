@@ -17,6 +17,7 @@
     "ionicons": "^4.6.3",
     "node-sass": "^4.13.0",
     "qrcode-generator": "^1.4.4",
+    "qs": "^6.9.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-map-gl": "^5.1.2",
