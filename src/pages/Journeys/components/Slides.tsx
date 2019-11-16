@@ -44,8 +44,8 @@ export const JourneyStepSlides: React.FC<Props> = (props) => {
   return (
     <IonSlides pager={true} options={slideOpts} onIonSlideDidChange={slideChange}>
       {
-        props.journeySteps.map(step => (
-          <IonSlide>
+        props.journeySteps.map((step, index) => (
+          <IonSlide key={index}>
             <IonCard>
               <IonCardHeader>
                 <IonCardSubtitle>{step.mode}</IonCardSubtitle>

@@ -13,9 +13,9 @@ const JourneyScreen: React.FC = () => {
       <IonContent>
         <IonList>
           {
-            journeys.map(journey =>
+            journeys.map((journey, index) =>
               (
-                <IonCard routerLink={`journeys/${journey.id}/detail`}>
+                <IonCard routerLink={`journeys/${journey.id}/detail`} key={index}>
                   <IonCardHeader>
                   <IonCardSubtitle>{new Date(journey.departTime).toLocaleDateString()}</IonCardSubtitle>
                     <IonCardTitle>{`${journey.steps[0].from.city} to ${journey.steps.reverse()[0].to.city}`}</IonCardTitle>

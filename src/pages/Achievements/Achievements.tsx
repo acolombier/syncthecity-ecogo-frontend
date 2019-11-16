@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonToolbar, IonPage, IonContent, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonCardContent, IonImg, IonText } from '@ionic/react';
+import { IonToolbar, IonPage, IonContent, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonCardContent, IonImg } from '@ionic/react';
 import Title from '../../components/Header/Title';
 import Header from '../../components/Header/Header';
 import { medal } from 'ionicons/icons';

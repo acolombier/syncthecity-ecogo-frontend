@@ -56,8 +56,8 @@ export const Map: React.FC<Props> = (props) => {
       mapboxApiAccessToken={'pk.eyJ1IjoibmF0aGFudm9sbGVyIiwiYSI6ImNrMzA5cmRldDA1ajAzbnJjbWpid2xqNnUifQ.AtmKV4b9aJYA_M9tciJZDQ'}
     >
       {
-        props.markers ? props.markers.map(marker => (
-          <Marker latitude={marker.latitude} longitude={marker.longitude}>
+        props.markers ? props.markers.map((marker, index) => (
+          <Marker latitude={marker.latitude} longitude={marker.longitude} key={index}>
             <IonIcon icon={pin} />
           </Marker>
         )) : null
