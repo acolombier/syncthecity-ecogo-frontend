@@ -10,24 +10,68 @@ import {
   IonFooter,
   IonToolbar,
   IonButtons,
-  IonImg
+  IonImg,
+  IonModal,
+  IonSearchbar,
+  IonList,
+  IonItem,
+  IonLabel
 } from '@ionic/react';
 import { pin, locate, calendar } from 'ionicons/icons';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Search.scss';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
 import { RouteComponentProps } from 'react-router';
+import { geocode, mapLatLon } from '../../services/searchResults';
+import { GeoCodeResponse } from '../../data/geocode';
 
-interface Props extends RouteComponentProps<{
-  id: string;
-}> {}
+type ModalType = 'from' | 'to';
 
-const SearchScreen: React.FC<Props> = (props) => {
+interface Props
+  extends RouteComponentProps<{
+    id: string;
+  }> {}
+
+const SearchScreen: React.FC<Props> = props => {
   const [from, setFrom] = useState();
+  const [fromCoords, setFromCoords] = useState();
   const [to, setTo] = useState();
+  const [toCoords, setToCoords] = useState();
+  const [date, setDate] = useState();
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [modalType, setModalType] = useState<ModalType>('from');
+  const [geocodeResults, setGeocodeResults] = useState<GeoCodeResponse[]>([]);
 
   const now = new Date();
+
+  const openModal = (type: ModalType) => {
+    setModalType(type);
+    setSearchModalOpen(true);
+  };
+
+  const search = async (term: string) => {
+    setSearchTerm(term);
+    const results = await geocode(term);
+    setGeocodeResults(results);
+  };
+
+  const selectLocation = (location: GeoCodeResponse) => {
+    setSearchTerm('');
+    setGeocodeResults([]);
+    const term = location.display_name;
+    const coords = { lat: location.lat, lon: location.lon };
+    if (modalType === 'from') {
+      setFrom(term);
+      setFromCoords(coords);
+    } else {
+      setTo(term);
+      setToCoords(coords);
+    }
+    setSearchModalOpen(false);
+  };
+
   return (
     <IonPage>
       <IonToolbar>
@@ -39,13 +83,23 @@ const SearchScreen: React.FC<Props> = (props) => {
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
             <IonIcon icon={locate}></IonIcon>
-            <IonInput placeholder="Type your departure location..." value={from} onIonChange={(value) => setFrom(value.detail.value)}></IonInput>
+            <IonInput
+              onClick={() => openModal('from')}
+              placeholder="Type your departure location..."
+              value={from}
+              onIonChange={value => setFrom(value.detail.value)}
+            ></IonInput>
           </IonCardContent>
         </IonCard>
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
             <IonIcon icon={pin}></IonIcon>
-            <IonInput placeholder="Type your destination..." value={to} onIonChange={(value) => setTo(value.detail.value)}></IonInput>
+            <IonInput
+              onClick={() => openModal('to')}
+              placeholder="Type your destination..."
+              value={to}
+              onIonChange={value => setTo(value.detail.value)}
+            ></IonInput>
           </IonCardContent>
         </IonCard>
         <IonCard>
@@ -55,6 +109,7 @@ const SearchScreen: React.FC<Props> = (props) => {
               placeholder="Find the date you want to leave..."
               min={now.toISOString()}
               max="2030-01-01"
+              onIonChange={e => setDate(e.detail.value)}
             ></IonDatetime>
           </IonCardContent>
         </IonCard>
@@ -63,11 +118,40 @@ const SearchScreen: React.FC<Props> = (props) => {
           src="/assets/usp.svg"
           className="ion-padding"
         ></IonImg>
+        <IonModal isOpen={searchModalOpen}>
+          <IonSearchbar
+            showCancelButton="always"
+            value={searchTerm}
+            onIonCancel={() => setSearchModalOpen(false)}
+            onIonChange={value => search(value.detail.value!)}
+          ></IonSearchbar>
+          <IonList>
+            {geocodeResults.map((result, i) => (
+              <IonItem onClick={() => selectLocation(result)}>
+                <IonLabel className="ion-text-wrap">
+                  {result.display_name}
+                </IonLabel>
+              </IonItem>
+            ))}
+          </IonList>
+        </IonModal>
       </IonContent>
 
       <IonFooter>
         <div className="ion-padding">
-          <IonButton expand="block" size="large" onClick={() => props.history.push('/search/results', {to, from})}>
+          <IonButton
+            expand="block"
+            size="large"
+            onClick={() =>
+              props.history.push('/search/results', {
+                to,
+                toCoords,
+                from,
+                fromCoords,
+                date
+              })
+            }
+          >
             Search
           </IonButton>
         </div>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { LatLon } from '../components/Map';
 import { GeoCodeResponse } from '../data/geocode';
 
 export interface ArrivalPoint {
@@ -53,10 +52,15 @@ export interface JourneyResult {
   steps: Step[];
 }
 
-export const fetchSearchResults = async (to: string, from: string): Promise<JourneyResult[]> => {
+export const fetchSearchResults = async (
+  to: string,
+  from: string
+): Promise<JourneyResult[]> => {
   const url = `http://192.168.10.207:8080/search`;
-  const fromCoords = await geocode(from);
-  const toCoords = await geocode(to);
+  const fromResults = await geocode(from);
+  const toResults = await geocode(to);
+  const fromCoords = mapLatLon(fromResults[0]);
+  const toCoords = mapLatLon(toResults[0]);
 
   const requestData = {
     from: { lat: fromCoords.latitude, lon: fromCoords.longitude },
@@ -67,14 +71,33 @@ export const fetchSearchResults = async (to: string, from: string): Promise<Jour
   return results;
 };
 
-const geocode = async (searchTerm: string): Promise<LatLon> => {
+export const fetchSearchResultsWithLatLng = async (
+  to: GeoCodeResponse,
+  from: GeoCodeResponse
+): Promise<JourneyResult[]> => {
+  const url = `http://192.168.10.207:8080/search`;
+
+  const requestData = {
+    from: mapLatLon(from),
+    to: mapLatLon(to)
+  };
+
+  const results = (await axios.post(url, requestData)).data;
+  return results;
+};
+
+export const geocode = async (
+  searchTerm: string
+): Promise<GeoCodeResponse[]> => {
   const key = 'e629040e4b7243';
-  const url = `https://eu1.locationiq.com/v1/search.php?key=${key}&q=${searchTerm}&format=json`;
+  const url = `https://eu1.locationiq.com/v1/search.php?key=${key}&q=${searchTerm}&countrycodes=gb,fr&format=json`;
 
-  const results: GeoCodeResponse = (await axios.get(url)).data;
+  return (await axios.get(url)).data;
+};
 
+export const mapLatLon = (geocodeResponse: GeoCodeResponse) => {
   return {
-    latitude: parseFloat(results.lat),
-    longitude: parseFloat(results.lon)
+    latitude: parseFloat(geocodeResponse.lat),
+    longitude: parseFloat(geocodeResponse.lon)
   };
 };

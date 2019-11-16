@@ -5,8 +5,10 @@ import {
   IonToolbar,
   IonButtons,
   IonBackButton,
-  IonRouterLink
+  IonRouterLink,
+  IonLoading
 } from '@ionic/react';
+import { RouteComponentProps } from 'react-router';
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
@@ -16,31 +18,48 @@ import {
   fetchSearchResults,
   JourneyResult
 } from '../../services/searchResults';
-import { RouteComponentProps } from 'react-router';
-
-const list = [1, 2, 3];
 
 interface Props extends RouteComponentProps {}
 
 const SearchResultsScreen: React.FC<Props> = props => {
+  const to = props.location.state.to;
+  const from = props.location.state.from;
+
   const [results, setResults] = useState<JourneyResult[]>([]);
-  const [loadng, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getSearchResults = async () => {
-    const response = await fetchSearchResults(
-      props.location.state.to,
-      props.location.state.from
-    );
-    console.log(response);
-    setResults(response);
-    setLoading(false);
+    setLoading(true);
+    fetchSearchResults(to, from)
+      .then(response => {
+        setResults(response);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
-    console.log(props);
-    setLoading(true);
     getSearchResults();
   }, []);
+
+  const renderLoading = () => {
+    return (
+      <IonLoading isOpen={loading} message={'Finding you the best route...'} />
+    );
+  };
+
+  const renderResults = () => {
+    return results.map((result, i) => (
+      <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
+        <div style={{ paddingBottom: '.5rem' }}>
+          <SearchResultCard header="Greener choice - 16% less CO2">
+            <SearchResultJourney></SearchResultJourney>
+          </SearchResultCard>
+        </div>
+      </IonRouterLink>
+    ));
+  };
 
   return (
     <IonPage>
@@ -53,20 +72,12 @@ const SearchResultsScreen: React.FC<Props> = props => {
       <IonContent>
         <Header>
           <SearchResultInfo
-            from="London"
-            to="Paris"
+            from={from}
+            to={to}
             date="Friday, 3 December 2019"
           ></SearchResultInfo>
         </Header>
-        {list.map(i => (
-          <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
-            <div style={{ paddingBottom: '.5rem' }}>
-              <SearchResultCard header="Greener choice - 16% less CO2">
-                <SearchResultJourney></SearchResultJourney>
-              </SearchResultCard>
-            </div>
-          </IonRouterLink>
-        ))}
+        {loading ? renderLoading() : renderResults()}
       </IonContent>
     </IonPage>
   );
