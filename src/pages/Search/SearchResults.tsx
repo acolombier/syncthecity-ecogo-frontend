@@ -12,7 +12,10 @@ import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
 import SearchResultInfo from '../../components/Search/SearchResultInfo';
 import SearchResultJourney from '../../components/Search/SearchResultJourney';
-import { fetchSearchResults } from '../../services/searchResults';
+import {
+  fetchSearchResults,
+  JourneyResult
+} from '../../services/searchResults';
 import { RouteComponentProps } from 'react-router';
 
 const list = [1, 2, 3];
@@ -20,7 +23,7 @@ const list = [1, 2, 3];
 interface Props extends RouteComponentProps {}
 
 const SearchResultsScreen: React.FC<Props> = props => {
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState<JourneyResult[]>([]);
   const [loadng, setLoading] = useState(false);
 
   const getSearchResults = async () => {
