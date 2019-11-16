@@ -18,8 +18,9 @@ import SearchResultInfo from '../../components/Search/SearchResultInfo';
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import JourneyStep from '../../components/Journey/JourneyStep';
 import { createFeedItem } from '../../services/monzo';
+import { RouteComponentProps } from 'react-router';
 
-const JourneyScreen: React.FC = () => {
+const JourneyScreen: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <IonPage>
       <IonHeader>
@@ -61,7 +62,10 @@ const JourneyScreen: React.FC = () => {
             expand="block"
             color="danger"
             className="flex ion-justify-content-between"
-            onClick={() => createFeedItem()}
+            onClick={() => {
+              createFeedItem();
+              history.push('/search/checkout');
+            }}
           >
             <p className="ion-text-start" style={{ flex: 1 }}>
               Checkout
