@@ -9,6 +9,7 @@ import {
   IonLoading
 } from '@ionic/react';
 import { RouteComponentProps } from 'react-router';
+import { sortBy } from 'lodash';
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Header/Title';
@@ -34,7 +35,7 @@ const SearchResultsScreen: React.FC<Props> = props => {
     setLoading(true);
     fetchSearchResults(to, from)
       .then(response => {
-        setResults(response);
+        setResults(sortBy(response, 'co2'));
       })
       .finally(() => {
         setLoading(false);
@@ -58,7 +59,7 @@ const SearchResultsScreen: React.FC<Props> = props => {
     return results.map((result, i) => (
       <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
         <div style={{ paddingBottom: '.5rem' }}>
-          <SearchResultCard header="Greener choice - 16% less CO2">
+          <SearchResultCard header={`${result.co2.toFixed(1)}kg of carbon`}>
             <SearchResultJourney journeyResult={result}></SearchResultJourney>
           </SearchResultCard>
         </div>
