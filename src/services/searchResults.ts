@@ -56,7 +56,7 @@ export const fetchSearchResults = async (
   to: string,
   from: string
 ): Promise<JourneyResult[]> => {
-  const url = `http://192.168.10.207:8080/search`;
+  const url = `https://83ee7a07.ngrok.io/search`;
   const fromResults = await geocode(from);
   const toResults = await geocode(to);
   const fromCoords = mapLatLon(fromResults[0]);
@@ -75,7 +75,7 @@ export const fetchSearchResultsWithLatLng = async (
   to: GeoCodeResponse,
   from: GeoCodeResponse
 ): Promise<JourneyResult[]> => {
-  const url = `http://192.168.10.207:8080/search`;
+  const url = `https://83ee7a07.ngrok.io/search`;
 
   const requestData = {
     from: mapLatLon(from),

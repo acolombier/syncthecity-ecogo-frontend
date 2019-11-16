@@ -6,7 +6,8 @@ import {
   IonButtons,
   IonBackButton,
   IonRouterLink,
-  IonLoading
+  IonLoading,
+  IonImg
 } from '@ionic/react';
 import { RouteComponentProps } from 'react-router';
 import { sortBy } from 'lodash';
@@ -23,8 +24,16 @@ import {
 interface Props extends RouteComponentProps {}
 
 const SearchResultsScreen: React.FC<Props> = props => {
-  const toParts = props.location.state.to.split(',');
-  const fromParts = props.location.state.from.split(',');
+  const toParam =
+    props && props.location && props.location.state
+      ? props.location.state.to
+      : '';
+  const fromParam =
+    props && props.location && props.location.state
+      ? props.location.state.from
+      : '';
+  const toParts = (toParam || '').split(',');
+  const fromParts = (fromParam || '').split(',');
   const to = toParts[0];
   const from = fromParts[0];
 
@@ -56,15 +65,24 @@ const SearchResultsScreen: React.FC<Props> = props => {
   };
 
   const renderResults = () => {
-    return results.map((result, i) => (
-      <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
-        <div style={{ paddingBottom: '.5rem' }}>
-          <SearchResultCard header={`${result.co2.toFixed(1)}kg of carbon`}>
-            <SearchResultJourney journeyResult={result}></SearchResultJourney>
-          </SearchResultCard>
+    return (
+      <>
+        <div className="ion-padding">
+          <IonImg alt="Eco message" src="/assets/search-tabs.svg"></IonImg>
         </div>
-      </IonRouterLink>
-    ));
+        {results.map((result, i) => (
+          <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
+            <div style={{ paddingBottom: '.5rem' }}>
+              <SearchResultCard header={`${result.co2.toFixed(1)}kg of carbon`}>
+                <SearchResultJourney
+                  journeyResult={result}
+                ></SearchResultJourney>
+              </SearchResultCard>
+            </div>
+          </IonRouterLink>
+        ))}
+      </>
+    );
   };
 
   return (

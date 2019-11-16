@@ -84,7 +84,9 @@ const SearchScreen: React.FC<Props> = props => {
         <IonButtons slot="start"></IonButtons>
         <Title></Title>
       </IonToolbar>
-      <Header>What's your destination?</Header>
+      <Header>
+        Hi Matt, <br /> What's your destination?
+      </Header>
       <IonContent slot="fixed">
         <IonCard>
           <IonCardContent className="ion-align-items-center flex">
@@ -93,6 +95,7 @@ const SearchScreen: React.FC<Props> = props => {
               onClick={() => openModal('from')}
               placeholder="Type your departure location..."
               value={from}
+              readonly
               onIonChange={value => setFrom(value.detail.value)}
             ></IonInput>
           </IonCardContent>
@@ -104,6 +107,7 @@ const SearchScreen: React.FC<Props> = props => {
               onClick={() => openModal('to')}
               placeholder="Type your destination..."
               value={to}
+              readonly
               onIonChange={value => setTo(value.detail.value)}
             ></IonInput>
           </IonCardContent>
@@ -146,6 +150,7 @@ const SearchScreen: React.FC<Props> = props => {
       <IonFooter>
         <div className="ion-padding">
           <IonButton
+            color="danger"
             expand="block"
             size="large"
             onClick={() =>
