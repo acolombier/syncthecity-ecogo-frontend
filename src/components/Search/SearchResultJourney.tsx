@@ -1,7 +1,12 @@
 import React from 'react';
 import SearchResultJourneyStep from './SearchResultJourneyStep';
+import { JourneyResult } from '../../services/searchResults';
 
-const SearchResultJourney: React.FC = () => {
+interface Props {
+  journeyResult: JourneyResult;
+}
+
+const SearchResultJourney: React.FC<Props> = props => {
   return (
     <div>
       <div className="flex">
@@ -17,7 +22,7 @@ const SearchResultJourney: React.FC = () => {
         >
           Total price
           <span style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-            &nbsp;£168
+            &nbsp;{`£${props.journeyResult.cost/100}`}
           </span>
         </div>
       </div>

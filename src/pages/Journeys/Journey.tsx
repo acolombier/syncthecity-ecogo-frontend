@@ -17,6 +17,7 @@ import Header from '../../components/Header/Header';
 import SearchResultInfo from '../../components/Search/SearchResultInfo';
 import SearchResultCard from '../../components/Search/SearchResultCard';
 import JourneyStep from '../../components/Journey/JourneyStep';
+import { createFeedItem } from '../../services/monzo';
 
 const JourneyScreen: React.FC = () => {
   return (
@@ -60,6 +61,7 @@ const JourneyScreen: React.FC = () => {
             expand="block"
             color="danger"
             className="flex ion-justify-content-between"
+            onClick={() => createFeedItem()}
           >
             <p className="ion-text-start" style={{ flex: 1 }}>
               Checkout

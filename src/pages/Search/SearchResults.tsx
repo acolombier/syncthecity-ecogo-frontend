@@ -59,7 +59,7 @@ const SearchResultsScreen: React.FC<Props> = props => {
       <IonRouterLink key={i} routerLink={`/search/journeys/${i}`}>
         <div style={{ paddingBottom: '.5rem' }}>
           <SearchResultCard header="Greener choice - 16% less CO2">
-            <SearchResultJourney></SearchResultJourney>
+            <SearchResultJourney journeyResult={result}></SearchResultJourney>
           </SearchResultCard>
         </div>
       </IonRouterLink>
