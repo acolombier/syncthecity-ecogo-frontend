@@ -10,8 +10,8 @@ const SearchResultJourney: React.FC<Props> = props => {
   return (
     <div>
       <div className="flex">
-        {[1, 2, 3].map(i => (
-          <SearchResultJourneyStep key={i}></SearchResultJourneyStep>
+        {props.journeyResult.steps.map((step, index) => (
+          <SearchResultJourneyStep step={step} key={index}></SearchResultJourneyStep>
         ))}
       </div>
       <div className="ion-padding">
