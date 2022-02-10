@@ -20,7 +20,7 @@
     "debounce": "^1.2.0",
     "ionicons": "^4.6.3",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "qrcode-generator": "^1.4.4",
     "qs": "^6.9.1",
     "react": "^16.10.2",
